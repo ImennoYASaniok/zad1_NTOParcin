@@ -2,6 +2,11 @@ import pandas as pd
 import numpy as np  
 
 <<<<<<< HEAD
+dt_osn = pd.read_csv(r'test_ds\MLtest.csv')
+all_names_f = dt_osn["имя файла данных"]
+dt_osn = dt_osn.drop(["имя файла данных"], axis=1)
+=======
+<<<<<<< HEAD
 # with open('test_data.csv', 'r') as csvfile:
 #     # creating a csv reader object
 #     csvreader = csv.reader(csvfile)
@@ -10,15 +15,28 @@ import numpy as np
 dt_test = pd.read_csv(fr'test_ds\all_purs\raw_data_0a14f818-b0de-11ec-b89c-e82aea2c97f4.csv')
 #print(dt_test)
 >>>>>>> 7170625fef7f5942d6c95fbce0112226bc5806c9
+>>>>>>> eb3fc7b1d4f143537a67af3cc55f3651d83edfb2
 
-for i in ["THUMB_MCP", "THUMB_IP", 
-            "INDEX_FINGER_PIP", "INDEX_FINGER_DIP",
-            "MIDDLE_FINGER_PIP", "MIDDLE_FINGER_DIP",
-            "RING_FINGER_PIP", "RING_FINGER_DIP",
-            "PINKY_PIP", "PINKY_DIP",]:
-    for j in ["x", "y", "z"]:
-        dt_test = dt_test.drop(f"{i}.{j}", axis=1)
+dt_test = pd.DataFrame(columns=pd.read_csv(fr"TEST_toCORRv1\ITOGpurs\{all_names_f[0]}").columns)
+for ind_row_osn in range(len(dt_osn)):
+    mid_dt_test = pd.read_csv(fr"TEST_toCORRv1\ITOGpurs\{all_names_f[ind_row_osn]}")
+    print("START test DS")
+    print(mid_dt_test)
+    print()
 
+<<<<<<< HEAD
+    for name_osn_col in dt_osn.columns:
+        mid_dt_test[name_osn_col] = [dt_osn[name_osn_col][ind_row_osn] for i in range(len(mid_dt_test))]
+    mid_dt_test["DOP_ID"] = np.arange(0, len(mid_dt_test))
+    print("ITOG test mid DS")
+    print(mid_dt_test)
+    print()
+    dt_test = pd.concat([dt_test, mid_dt_test], ignore_index=True)
+dt_test.to_csv(fr'C:\Users\maxim\Desktop\SASHA\OSNOVNOE\PROGRANING\PYTHON\DOP\KODIIM\1)ML_prjt\zad1_NTOParcin\ML_ITOG.csv', index=False, encoding='utf-8')
+
+print("\n\nITOG test OSN DS")
+print(dt_test)
+=======
 <<<<<<< HEAD
 dt_test = pd.read_csv(r'raw_data_0a14f818-b0de-11ec-b89c-e82aea2c97f4.csv')
 print(dt_test)
@@ -128,3 +146,4 @@ print()
 #     print()
 print("\n\nDONE")
 >>>>>>> 7170625fef7f5942d6c95fbce0112226bc5806c9
+>>>>>>> eb3fc7b1d4f143537a67af3cc55f3651d83edfb2
